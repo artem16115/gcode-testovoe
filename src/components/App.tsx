@@ -45,7 +45,6 @@ function App() {
         <SearchPanel />
         <CompanyList />
       </div>
-
     </div>
   );
 }

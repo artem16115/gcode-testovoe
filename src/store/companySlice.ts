@@ -28,7 +28,6 @@ export const companyListSlice = createSlice({
             })
         },
         getCompanies: (state, action) => {
-            console.log(action.payload.currentPage, 'action.payload.currentPage')
             const curPage = action.payload.currentPage * 20
             if (state.searchingStr.length) {
                 for (let i = curPage; i < curPage + 20; i++) {
@@ -40,9 +39,6 @@ export const companyListSlice = createSlice({
                 }
             }
         },
-        // clearViewCompanies: (state) => {
-        //     state.viewCompanies = []
-        // },
         selectCompany: (state, action) => {
             const index = state.companies.findIndex(company => company.id === action.payload.id)
             const indexView = state.viewCompanies.findIndex(company => company.id === action.payload.id)

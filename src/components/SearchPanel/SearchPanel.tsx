@@ -7,13 +7,15 @@ import { RootState } from '../../store/store';
 import { changeSearchPressed, getSearchingCompanies, changeSearchingStr } from '../../store/companySlice';
 
 const SearchPanel = () => {
+    const pathname = window.location.pathname.substring(1)
+
     const [searchValue, setSearchValue] = useState('')
     const pressedButton = useSelector((state: RootState) => state.companyReducer.searchPressed)
     const dispatch = useDispatch()
 
-
-
-
+    useEffect(() => {
+        if (pathname !== '') setSearchValue(pathname)
+    }, [pathname])
 
     const firstUpdate = useRef(true);
     useLayoutEffect(() => {
@@ -22,13 +24,9 @@ const SearchPanel = () => {
         } else {
             const timeOutId = setTimeout(() => {
                 dispatch(getSearchingCompanies(searchValue))
-                // if (searchValue.trim().length > 0) {
                 dispatch(changeSearchingStr(searchValue))
-                // } else {
-                // dispatch(changeSearchingStr(searchValue))
-                // }
-
-            }, 1500);
+                window.history.replaceState({}, searchValue, `/${searchValue}`);
+            }, 1000);
             return () => clearTimeout(timeOutId);
         }
     }, [searchValue]);

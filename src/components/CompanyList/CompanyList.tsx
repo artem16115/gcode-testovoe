@@ -11,10 +11,6 @@ const CompanyList = () => {
     const allCompanies = useSelector((state: RootState) => state.companyReducer.companies)
     const pressedButton = useSelector((state: RootState) => state.companyReducer.searchPressed)
 
-
-
-    console.log(allCompanies, 'allCompanies')
-
     useEffect(() => {
         if (pressedButton === 'selected') {
             setCompanies([...viewCompanies.filter(company => !!company.selected)])

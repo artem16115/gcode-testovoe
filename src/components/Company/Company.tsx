@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './index.scss';
 import oneBlock from '../../assets/icons/one-block.svg'
 import twoBlocks from '../../assets/icons/two-blocks.svg'
@@ -32,7 +32,7 @@ const viewCorrectIcon = (count: number) => {
 }
 
 export const Company = ({ id, address, title, description, blocksCount, selected }: ICompany) => {
-
+    const dispatch = useDispatch()
     const searchingStr = useSelector((state: RootState) => state.companyReducer.searchingStr)
 
     const createUnderlineStr = (str: string) => {
@@ -50,14 +50,13 @@ export const Company = ({ id, address, title, description, blocksCount, selected
                 {str.substring(index + searchStrCount)}
             </>
         }
+
         return str
     }
 
     const buttonClassNames = classNames({
         selected: selected
     })
-
-    const dispatch = useDispatch()
 
     return (
         <div className="company-container">
